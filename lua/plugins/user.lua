@@ -4,19 +4,6 @@
 
 ---@type LazySpec
 return {
-
-  -- == Examples of Adding Plugins ==
-
-  -- "andweeb/presence.nvim",
-  -- {
-  --   "ray-x/lsp_signature.nvim",
-  --   event = "BufRead",
-  --   config = function() require("lsp_signature").setup() end,
-  -- },
-
-  -- == Examples of Overriding Plugins ==
-
-  -- customize dashboard options
   {
     "folke/snacks.nvim",
     opts = {
@@ -96,12 +83,18 @@ return {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
+      {
+        "nvim-treesitter/nvim-treesitter", -- Optional, but recommended
+        branch = "main",
+        build = function() vim.cmd ":TSUpdate go" end,
+      },
       "fredrikaverpil/neotest-golang", -- Installation
     },
     config = function()
       require("neotest").setup {
         adapters = {
           require "neotest-golang" {
+            runner = "gotestsum", -- Optional, but recommended
             go_test_args = {
               "-v",
               "-race",
@@ -136,25 +129,6 @@ return {
       { "<Leader>t", mode = { "n" }, desc = "Test" },
     },
   },
-  -- TODO:
-  -- {
-  --   "edolphin-ydf/goimpl.nvim",
-  --   keys = {
-  --     {
-  --       "<Leader>im",
-  --       mode = { "n" },
-  --       function() require("telescope").extensions.goimpl.goimpl {} end,
-  --       desc = "Go Impl",
-  --     },
-  --   },
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-lua/popup.nvim",
-  --     "nvim-telescope/telescope.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   config = function() require("telescope").load_extension "goimpl" end,
-  -- },
   {
     "leoluz/nvim-dap-go",
     opts = {},
