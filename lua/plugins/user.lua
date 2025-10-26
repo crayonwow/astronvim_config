@@ -82,19 +82,23 @@ return {
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
       {
-        "nvim-treesitter/nvim-treesitter", -- Optional, but recommended
+        "nvim-treesitter/nvim-treesitter",
         branch = "main",
         build = function() vim.cmd ":TSUpdate go" end,
       },
-      "fredrikaverpil/neotest-golang", -- Installation
+      {
+        "fredrikaverpil/neotest-golang",
+        dependencies = {
+          "andythigpen/nvim-coverage",
+        },
+      },
     },
     config = function()
-      require("neotest").setup {
+      local config = {
         adapters = {
           require "neotest-golang" {
-            runner = "gotestsum", -- Optional, but recommended
+            runner = "gotestsum",
             go_test_args = {
               "-v",
               "-race",
@@ -102,28 +106,21 @@ return {
               "-timeout=30s",
               "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
             },
-          }, -- Apply configuration
+          },
         },
-        -- See all config options with :h neotest.Config
         discovery = {
-          -- Drastically improve performance in ginormous projects by
-          -- only AST-parsing the currently opened buffer.
           enabled = true,
-          -- Number of workers to parse files concurrently.
-          -- A value of 0 automatically assigns number based on CPU.
-          -- Set to 1 if experiencing lag.
           concurrent = 1,
         },
         running = {
-          -- Run tests concurrently when an adapter provides multiple commands to run.
           concurrent = true,
         },
         summary = {
-          -- Enable/disable animation of icons.
           enabled = true,
           animated = true,
         },
       }
+      require("neotest").setup(config)
     end,
     keys = {
       { "<Leader>t", mode = { "n" }, desc = "Test" },
@@ -155,31 +152,11 @@ return {
           },
         },
         delve = {
-          -- the path to the executable dlv which will be used for debugging.
-          -- by default, this is the "dlv" executable on your PATH.
           path = "dlv",
-          -- time to wait for delve to initialize the debug session.
-          -- default to 20 seconds
           initialize_timeout_sec = 20,
-          -- a string that defines the port to start delve debugger.
-          -- default to string "${port}" which instructs nvim-dap
-          -- to start the process in a random available port
           port = 38697,
-          -- additional args to pass to dlv
           args = {},
-          -- the build flags that are passed to delve.
-          -- defaults to empty string, but can be used to provide flags
-          -- such as "-tags=unit" to make sure the test suite is
-          -- compiled during debugging, for example.
-          -- passing build flags using args is ineffective, as those are
-          -- ignored by delve in dap mode.
-          build_flags = "",
-          -- whether the dlv process to be created detached or not. there is
-          -- an issue on Windows where this needs to be set to false
-          -- otherwise the dlv server creation will fail.
           detached = true,
-          -- the current working directory to run dlv from, if other than
-          -- the current working directory.
           cwd = nil,
         },
       }
@@ -199,10 +176,5 @@ return {
         },
       }
     end,
-  },
-  {
-    "andythigpen/nvim-coverage",
-    enabled = true,
-    config = function() require("coverage").setup {} end,
   },
 }
