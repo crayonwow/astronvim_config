@@ -85,7 +85,7 @@ return {
       {
         "nvim-treesitter/nvim-treesitter",
         branch = "main",
-        build = function() vim.cmd ":TSUpdate go" end,
+        -- build = function() vim.cmd ":TSUpdate go" end,
       },
       {
         "fredrikaverpil/neotest-golang",
