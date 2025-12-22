@@ -1,15 +1,21 @@
 return {
-  --   "yetone/avante.nvim",
-  --   opts = function(_, opts)
-  --     opts.provider = "copilot"
-  --     opts.copilot = {
-  --       model = "claude-3.7-sonnet",
-  --       proxy = "socks5://localhost:1080",
-  --     }
-  --     -- opts.cursor_applying_provider = "groq"
-  --     -- opts.behaviour = {
-  --     --   --- ... existing behaviours
-  --     --   enable_cursor_planning_mode = true, -- enable cursor planning mode!
-  --     -- }
-  --   end,
+  -- "yetone/avante.nvim",
+  -- opts = function(_, opts)
+  --   opts.provider = "aika"
+  --   opts.providers = {
+  --     aika = {
+  --       __inherited_from = "openai",
+  --       endpoint = "https://api.aika-ai.com/v1",
+  --       api_key_name = "AIKA_API_KEY",
+  --       model = "ChatGPT-5.2",
+  --       timeout = 300000,
+  --     },
+  --   }
+  --
+  --   -- opts.cursor_applying_provider = "groq"
+  --   -- opts.behaviour = {
+  --   --   --- ... existing behaviours
+  --   --   enable_cursor_planning_mode = true, -- enable cursor planning mode!
+  --   -- }
+  -- end,
 }

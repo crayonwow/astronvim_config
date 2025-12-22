@@ -8,13 +8,7 @@ return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    -- change colorscheme
-    -- colorscheme = "astrolight",
-    -- colorscheme = "tokyonight-day",
-    -- colorscheme = "tokyonight-moon",
-    -- colorscheme = "catppuccin",
-    colorscheme = "catppuccin-frappe",
-    -- colorscheme = "astrodark",
+    colorscheme = "lackluster-night",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
