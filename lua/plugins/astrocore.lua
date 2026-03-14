@@ -37,7 +37,7 @@ local function getMaps()
         desc = "Toggle coverage",
       },
       ["<Leader>tl"] = {
-        function() require("coverage").load(false) end,
+        function() require("coverage").load(true) end,
         desc = "Load coverage",
       },
     },

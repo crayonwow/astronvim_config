@@ -14,16 +14,15 @@ return {
       -- go
       null_ls.builtins.formatting.gofumpt,
       null_ls.builtins.formatting.golines,
-      -- lua
+      null_ls.builtins.formatting.goimports_reviser,
+      null_ls.builtins.formatting.goimports,
       null_ls.builtins.formatting.stylua,
-      -- rust
       null_ls.builtins.formatting.rustywind,
-
       null_ls.builtins.formatting.sqlfluff.with {
-        extra_args = { "--dialect", "mysql" }, -- change to your dialect
+        extra_args = { "--dialect", "postgres" },
       },
       null_ls.builtins.diagnostics.sqlfluff.with {
-        extra_args = { "--dialect", "mysql" }, -- change to your dialect
+        extra_args = { "--dialect", "postgres" },
       },
     }
     return config -- return final config table

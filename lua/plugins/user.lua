@@ -91,6 +91,7 @@ return {
         "fredrikaverpil/neotest-golang",
         dependencies = {
           "andythigpen/nvim-coverage",
+          config = function() require("coverage").setup { auto_reload = false } end,
         },
       },
     },
@@ -106,6 +107,7 @@ return {
               "-timeout=30s",
               "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
             },
+            testify_enabled = true,
           },
         },
         discovery = {
