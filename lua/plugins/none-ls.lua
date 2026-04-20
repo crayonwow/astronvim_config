@@ -10,10 +10,13 @@ return {
     -- Check supported formatters and linters
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+    config.debug = true
     config.sources = {
       -- go
       null_ls.builtins.formatting.gofumpt,
-      null_ls.builtins.formatting.golines,
+      -- null_ls.builtins.formatting.golines.with {
+      --   args = { "--max-len=120" },
+      -- },
       null_ls.builtins.formatting.goimports_reviser,
       null_ls.builtins.formatting.goimports,
       null_ls.builtins.formatting.stylua,

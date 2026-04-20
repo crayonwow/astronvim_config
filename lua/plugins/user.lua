@@ -104,14 +104,14 @@ return {
               "-v",
               "-race",
               "-count=1",
-              "-timeout=30s",
+              "-timeout=90s",
               "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
             },
             testify_enabled = true,
           },
         },
         discovery = {
-          enabled = true,
+          enabled = false,
           concurrent = 1,
         },
         running = {
